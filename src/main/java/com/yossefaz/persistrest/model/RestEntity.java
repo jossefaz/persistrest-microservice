@@ -2,6 +2,7 @@ package com.yossefaz.persistrest.model;
 
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;
 import com.vladmihalcea.hibernate.type.json.JsonNodeBinaryType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,10 @@ import java.util.UUID;
         name = "jsonb-node",
         typeClass = JsonNodeBinaryType.class
 )
+@TypeDef(
+        name = "pgsql_enum",
+        typeClass = PostgreSQLEnumType.class
+)
 public class RestEntity {
 
     @Id
@@ -40,5 +45,10 @@ public class RestEntity {
     @Type(type = "jsonb-node")
     @Column(name = "headers", columnDefinition = "json")
     private JsonNode headers;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name="method", columnDefinition = "methods")
+    @Type( type = "pgsql_enum" )
+    private RequestMethods method;
 
 }
