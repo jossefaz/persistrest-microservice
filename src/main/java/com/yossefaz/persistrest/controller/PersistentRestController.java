@@ -15,7 +15,7 @@ import java.util.stream.StreamSupport;
 @Slf4j
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("persistentrest")
+@RequestMapping("api/v1/persistentrest")
 public class PersistentRestController  {
 
     @Autowired
@@ -25,19 +25,19 @@ public class PersistentRestController  {
 //    RestClient restClient;
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    public void handlePost(@RequestBody RestEntity restEntity) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createRequest(@RequestBody RestEntity restEntity) {
             persistentRestService.save(restEntity);
     }
 
     @GetMapping
-    public ResponseEntity<List<RestEntity>> performAllRequest() {
+    public ResponseEntity<List<RestEntity>> getAllRequest() {
         return new ResponseEntity(StreamSupport.stream( persistentRestService.findAll().spliterator(), false), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void performAllRequest(@PathVariable UUID id) {
+    public void deleteRequest(@PathVariable UUID id) {
         persistentRestService.deleteById(id);
     }
 

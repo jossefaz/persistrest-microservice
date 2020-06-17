@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;
 import com.vladmihalcea.hibernate.type.json.JsonNodeBinaryType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -19,6 +20,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Entity
 @Data
+@Builder
 @Table(name = "persistent_rest")
 @TypeDef(name = "jsonb-node",typeClass = JsonNodeBinaryType.class)
 @TypeDef(name = "pgsql_enum",typeClass = PostgreSQLEnumType.class)
