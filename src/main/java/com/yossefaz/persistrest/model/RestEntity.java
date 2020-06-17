@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+import org.springframework.http.HttpMethod;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -19,14 +20,8 @@ import java.util.UUID;
 @Entity
 @Data
 @Table(name = "persistent_rest")
-@TypeDef(
-        name = "jsonb-node",
-        typeClass = JsonNodeBinaryType.class
-)
-@TypeDef(
-        name = "pgsql_enum",
-        typeClass = PostgreSQLEnumType.class
-)
+@TypeDef(name = "jsonb-node",typeClass = JsonNodeBinaryType.class)
+@TypeDef(name = "pgsql_enum",typeClass = PostgreSQLEnumType.class)
 public class RestEntity {
 
     @Id
@@ -49,6 +44,6 @@ public class RestEntity {
     @Enumerated(EnumType.STRING)
     @Column(name="method", columnDefinition = "methods")
     @Type( type = "pgsql_enum" )
-    private RequestMethods method;
+    private HttpMethod method;
 
 }
