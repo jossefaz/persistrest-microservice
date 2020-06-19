@@ -68,7 +68,7 @@ class PersistentRestControllerTest {
         ObjectMapper mapper = new ObjectMapper();
         String beerDtoJson = mapper.writeValueAsString(restEntity);
         given(persistentRestService.save(any())).willReturn(savedDto);
-        mockMvc.perform(post("/api/v1/persistentrest")
+        mockMvc.perform(post("/persistentrest")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(beerDtoJson))
                 .andExpect(status().isCreated());

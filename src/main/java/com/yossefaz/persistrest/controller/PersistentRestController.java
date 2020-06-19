@@ -9,13 +9,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.StreamSupport;
 
 @Slf4j
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("api/v1/persistentrest")
+@RequestMapping("persistentrest")
 public class PersistentRestController  {
 
     @Autowired
@@ -27,7 +28,8 @@ public class PersistentRestController  {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void createRequest(@RequestBody RestEntity restEntity) {
-            persistentRestService.save(restEntity);
+
+        persistentRestService.save(restEntity);
     }
 
     @GetMapping
